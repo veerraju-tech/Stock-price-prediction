@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Vision</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header >
+      <nav class="navbar">
+            <a href="{{ url_for('index') }}"> Home </a>
+            <a href="{{ url_for('services') }}">Services</a>
+            <a href="{{ url_for('predict') }}">Predict</a>
+            <a href="{{ url_for('about') }}">About Us</a>
+			<a href="{{ url_for('article') }}">Articles</a>
+            <a href="{{ url_for('contact') }}" class = "contact-button">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1><span>Stock</span> Vision <span></span></h1>
+            <p>Ready to take your investment game to the next level? Our stock market app has got you covered with up-to-date market news, real-time stock prices, and in-depth analysis.</p>
+			<p>For stock symbols click here:</p>
+            <button class="Learn-More" onclick = "window.open('https://stockanalysis.com/stocks/', '_blank')">Click Here</button>
+        </section>
+
+        <section class="content-grid">
+            <div class="card phone-display">
+                <img src="{{ url_for('static', filename='stock-1.jpg') }}" alt="Stock Image" height = "250px">
+            </div>
+            <div class="card phone-display">
+                <img src="{{ url_for('static', filename='stockimage.jpg') }}" alt="Stock Image" height = "250px">
+            </div>
+			<div class="card phone-display">
+				<img src="{{ url_for('static', filename='stock-2.jpg') }}" alt="Stock Image 2" height = "250px">
+            </div>
+        </section>
+    </main>
+</body>
+</html>

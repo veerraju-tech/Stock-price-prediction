@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body style = "text-align:center;">
+    <header >
+      <nav class="navbar">
+            <a href="{{ url_for('index') }}"> Home </a>
+            <a href="{{ url_for('services') }}">Services</a>
+            <a href="{{ url_for('predict') }}">Predict</a>
+            <a href="{{ url_for('about') }}">About Us</a>
+			<a href="{{ url_for('article') }}">Articles</a>
+            <a href="{{ url_for('contact') }}" class = "contact-button">Contact</a>
+        </nav>
+    </header>
+
+	<h1 style="color:#4caf50;">Search for a stock to start your analysis</h1><br>
+    <form action="/result" method="post">
+        <label for="ticker_symbol"></label>
+		<h3>Available information on 100,000+ stocks and funds, including all the companies in the S&P500 index. <br>See stock prices, news, financials, forecasts, graphs and more.</h3>
+        <br><p>Stock Predictor 
+		<input type="text" id="ticker_symbol" name="ticker_symbol" placeholder="Enter Stock Symbol" required >
+        <button type="submit">Submit</button></p>
+    </form>
+	<br><br>
+	<section class="card" style="background-color:#4caf50;">
+	<h1>HOW TO VIEW STOCK'S VALUE FOR TOMORROW</h1>
+	</section>
+	<section class="content-grid" style="max-width: 1500px; margin: 0 auto; text-align: center;">
+    <p class="card phone-display">
+		WELCOME TO STOCK PRICE PREDICTOR! <br><br>>> To view the stock value prediction, simply enter the ticker symbol of the stock name you're interested in, such as<br> >> "AAPL" for Apple,<br> >> "TSLA" for Tesla,<br> >> or "GOOGL" for Alphabet (Google).
+    </p>
+    <p class="card phone-display" >
+        >> Once you've entered the ticker symbol, click "Submit" and hang on!<br><br>>> Our prediction model will analyze the latest stock's data and provide you with an estimation value of stock's price for the next day.
+    </p>
+    <p class="card phone-display" >
+        >> After submitting the form, you will visualize the predicted stock value displayed on the next page.<br><br>>> If the prediction is unavailable or there is an error, make sure to check the ticker symbol for accuracy and try again.
+    </p>
+    <p class="card phone-display">
+        >> Please note that our stock predictions are based on historical data and patterns, so while the prediction aims to be as accurate as possible, stock markets are inherently volatile and unpredictable.<br><br>>> If you have any questions or need assistance, feel free to contact us through the "Contact" button in the navigation bar.
+    </p>
+</section>
+
+</body>
