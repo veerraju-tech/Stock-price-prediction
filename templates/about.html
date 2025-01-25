@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 50px;
+        }
+
+        .grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px;
+        }
+
+        .card {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 50%;
+            width: 180px;
+            height: 180px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        /* Image inside the circle */
+        .circle-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Initially hide the text */
+        .card p {
+            position: absolute;
+            color: black;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Display text when hovering over the card */
+        .card:hover p {
+            opacity: 1;
+        }
+
+        /* Hide image when hovering over the card */
+        .card:hover .circle-image {
+            opacity: 0;
+        }
+
+        /* Subtle hover effect for the card */
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 15px 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            color: #333;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .navbar a:hover {
+            color: #4caf50;
+        }
+
+        .contact-button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .contact-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="{{ url_for('index') }}"> Home </a>
+            <a href="{{ url_for('services') }}">Services</a>
+            <a href="{{ url_for('predict') }}">Predict</a>
+            <a href="{{ url_for('about') }}">About Us</a>
+			<a href="{{ url_for('article') }}">Articles</a>
+            <a href="{{ url_for('contact') }}" class = "contact-button">Contact</a>
+        </nav>
+    </header>
+
+    <h2>We, A team of 4!</h2>
+
+    <div class="grid-container">
+        <div class="card">
+            <img src="{{ url_for('static', filename='E3.jpeg') }}" class="circle-image" alt="Harika">
+            <p>K.Harika <br> 21A91A05E3</p> <br>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='E1.jpeg') }}" class="circle-image" alt="Pravalika">
+            <p>J.S.L.Pravalika <br> 21A91A05E1</p>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='A6.jpeg') }}" class="circle-image" alt="Yuvraj">
+            <p>Yuvraj Karna <br> 21A91A05A6</p>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='A5.jpeg') }}" class="circle-image" alt="Veerraju">
+            <p>Y.K.S Veerraju Chowdary <br> 21A91A05A5</p>
+        </div>
+    </div>
+	<section>
+		<img src="{{ url_for('static', filename='logo.jpg') }}"alt="College Logo" height="300px">
+	</section>
+
+</body>
+</html>
