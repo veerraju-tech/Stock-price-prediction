@@ -1,137 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Services</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
 
-        h1 {
-            margin-top: 50px;
-        }
+      h1 {
+        margin-top: 50px;
+      }
 
-        p {
-            max-width: 600px;
-            margin: 0 auto 40px auto;
-        }
+      p {
+        max-width: 600px;
+        margin: 0 auto 40px auto;
+      }
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            justify-content: center;
-            padding: 20px;
-        }
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        justify-content: center;
+        padding: 20px;
+      }
 
-        .card {
-            background: #f5f5f5;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.2s ease-in-out;
-            cursor: pointer;
-            position: relative;
-        }
-		.circle-image {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            transition: opacity 0.3s ease;
-        }
+      .card {
+        background: #f5f5f5;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease-in-out;
+        cursor: pointer;
+        position: relative;
+      }
+      .circle-image {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        object-fit: cover;
+        transition: opacity 0.5s ease;
+      }
 
-        .card p, .card a {
-            display: none;
-        }
+      /* .card p,
+      .card a {
+        display: none;
+      }
 
-        .card:hover p, .card:hover a {
-            display: block;
-        }
+      .card:hover p,
+      .card:hover a {
+        display: flex;
+      } */
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
+      .card:hover {
+        transform: 1s translateY(-5px);
+      }
 
-        .card h3 {
-            margin-top: 0;
-        }
+      .card h3 {
+        margin-top: 0;
+      }
 
-        .card a {
-            color: blue;
-            text-decoration: none;
-        }
-
+      .card a {
+        color: blue;
+        text-decoration: none;
+      }
     </style>
-	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-	<header >
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <header>
       <nav class="navbar">
-            <a href="{{ url_for('index') }}"> Home </a>
-            <a href="{{ url_for('services') }}">Services</a>
-            <a href="{{ url_for('predict') }}">Predict</a>
-            <a href="{{ url_for('about') }}">About Us</a>
-			<a href="{{ url_for('article') }}">Articles</a>
-            <a href="{{ url_for('contact') }}" class = "contact-button">Contact</a>
-        </nav>
+        <a href="{{ url_for('index') }}"> Home </a>
+        <a href="{{ url_for('services') }}">Services</a>
+        <a href="{{ url_for('predict') }}">Predict</a>
+        <a href="{{ url_for('about') }}">About Us</a>
+        <a href="{{ url_for('article') }}">Articles</a>
+        <a href="{{ url_for('contact') }}" class="contact-button">Contact</a>
+      </nav>
     </header>
     <h1>Solutions by role.</h1>
 
     <div class="grid-container">
-        <div class="card">
-			<h2>AMAZON</h2>
-			<form action="/result" method="get">
-				<a href="/amazon_stock">
-					<img src="{{ url_for('static', filename='logo-1.jpg') }}" alt="Amazon Stock">
-				</a>
-			</form>	
-		</div>
-		
-		<div class="card">
-			<h2>TCS</h2>
-			<form action="/result" method="get">
-				<a href="/tcs_stock">
-					<img src="{{ url_for('static', filename='logo-2.jpg') }}" alt="TCS Stock">
-				</a>
-			</form>	
-		</div>
-		<div class="card">
-			<h2>TESLA</h2>
-			<form action="/result" method="get">
-				<a href="/tesla_stock">
-					<img src="{{ url_for('static', filename='logo-3.jpg') }}" alt="Tesla Stock">
-				</a>
-			</form>	
-		</div>
-		<div class="card">
-			<h2>BITCOIN</h2>
-			<form action="/result" method="get">
-				<a href="/bitcoin_stock">
-					<img src="{{ url_for('static', filename='logo-4.jpg') }}" alt="Bitcoin Stock">
-				</a>
-			</form>	
-		</div>
-		<div class="card">
-			<h2>MICROSOFT</h2>
-			<form action="/result" method="get">
-				<a href="/microsoft_stock">
-					<img src="{{ url_for('static', filename='logo-5.jpg') }}" alt="Microsoft Stock">
-				</a>
-			</form>	
-		</div><div class="card">
-			<h2>APPLE</h2>
-			<form action="/result" method="get">
-				<a href="/apple_stock">
-					<img src="{{ url_for('static', filename='logo-6.jpg') }}" alt="Apple Stock">
-				</a>
-			</form>	
-		</div>
+      <div class="card">
+        <h2>AMAZON</h2>
+        <form action="/result" method="get">
+          <a href="/amazon_stock" class="">
+            <img
+              class="car-img"
+              src="{{ url_for('static', filename='logo-1.jpg') }}"
+              alt="Amazon Stock"
+            />
+          </a>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>TCS</h2>
+        <form action="/result" method="get">
+          <a href="/tcs_stock">
+            <img
+              src="{{ url_for('static', filename='logo-2.jpg') }}"
+              alt="TCS Stock"
+            />
+          </a>
+        </form>
+      </div>
+      <div class="card">
+        <h2>TESLA</h2>
+        <form action="/result" method="get">
+          <a href="/tesla_stock">
+            <img
+              src="{{ url_for('static', filename='logo-3.jpg') }}"
+              alt="Tesla Stock"
+            />
+          </a>
+        </form>
+      </div>
+      <div class="card">
+        <h2>BITCOIN</h2>
+        <form action="/result" method="get">
+          <a href="/bitcoin_stock">
+            <img
+              src="{{ url_for('static', filename='logo-4.jpg') }}"
+              alt="Bitcoin Stock"
+            />
+          </a>
+        </form>
+      </div>
+      <div class="card">
+        <h2>MICROSOFT</h2>
+        <form action="/result" method="get">
+          <a href="/microsoft_stock">
+            <img
+              src="{{ url_for('static', filename='logo-5.jpg') }}"
+              alt="Microsoft Stock"
+            />
+          </a>
+        </form>
+      </div>
+      <div class="card">
+        <h2>APPLE</h2>
+        <form action="/result" method="get">
+          <a href="/apple_stock">
+            <img
+              src="{{ url_for('static', filename='logo-6.jpg') }}"
+              alt="Apple Stock"
+            />
+          </a>
+        </form>
+      </div>
     </div>
-</body>
+  </body>
 </html>
