@@ -1,7 +1,0 @@
-Flask
-pandas
-numpy
-matplotlib
-tensorflow
-scikit-learn
-yfinance
