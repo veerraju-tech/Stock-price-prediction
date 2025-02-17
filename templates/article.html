@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Articles</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header >
+      <nav class="navbar">
+            <a href="{{ url_for('index') }}"> Home </a>
+            <a href="{{ url_for('services') }}">Services</a>
+            <a href="{{ url_for('predict') }}">Predict</a>
+			<a href="{{ url_for('livestock') }}">Live Stock</a>
+            <a href="{{ url_for('about') }}">About Us</a>
+			<a href="{{ url_for('article') }}">Articles</a>
+            <a href="{{ url_for('contact') }}" class = "contact-button">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1><span>Stock </span> Analysis <span> Blog </span></h1>
+			<p style="color:grey;">Latest articles on stocks, finance, and investing.</p>
+        </section>
+
+        <section class="content-grid">
+            <div class="card phone-display">
+                <a href="https://blog.stockedge.com/top-3-artificial-intelligence-stocks-in-india/"><img src = "{{ url_for('static', filename='ai-stock.jpg') }}" height = '250px' width = '300px'></a>
+				<br><p style="color:grey;">Top 3 Artificial Intelligence Stocks in India</p>
+            </div>
+			<div class="card phone-display">
+				<a href="https://www.equiruswealth.com/blog/investors-vs-traders-know-where-you-fit"><img src = "{{ url_for('static', filename='stock-5.jpg') }}" height = '250px' width = '300px'></a>
+				<br><p style="color:grey;">Investors vs. Traders: Know Where You Fit</p>      
+			</div>
+			<div class="card phone-display">
+                <a href="https://www.mstock.com/articles/what-are-value-stocks-and-how-to-identify-them"><img src = "{{ url_for('static', filename='stock-6.jpg') }}" height = '250px' width = '300px'></a>
+				<br><p style="color:grey;">What are Value Stocks and How to Identify Them</p>
+            </div>
+			<div class="card phone-display">
+                <a href="https://www.bajajbroking.in/blog/what-are-forex-options"><img src = "{{ url_for('static', filename='stock-7.jpg') }}" height = '250px' width = '300px'></a>
+				<br><p style="color:grey;">What are Forex Options?</p>
+            </div>
+			<div class="card phone-display">
+                <a href="https://profitmart.in/blog/what-is-momentum-investing-a-simple-explanation/"><img src = "{{ url_for('static', filename='stock-8.jpg') }}" height = '250px' width = '300px'></a>
+				<br><p style="color:grey;">What is Momentum Investing</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

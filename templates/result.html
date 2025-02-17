@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Prediction Results</title>
+</head>
+<body>
+    <h1>Results for {{ ticker_symbol }}</h1>
+    <h2>Graphical Stock View</h2>
+    <img src="data:image/png;base64,{{ graph_url }}" alt="Stock Prediction Graph">
+    <h2>Next Day's Predicted Price</h2>
+    <p>${{ next_day_price }}</p>
+    <h2>Accuracy Metrics</h2>
+    <ul>
+        <li>Mean Squared Error (MSE): {{ mse }}</li>
+        <li>Mean Absolute Error (MAE): {{ mae }}</li>
+        <li>Root Mean Squared Error (RMSE): {{ rmse }}</li>
+    </ul>
+    <a href="/" class = "contact-button">Go Back</a>
+    
+</body>
+</html>
