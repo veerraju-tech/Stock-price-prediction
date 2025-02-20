@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Stock Candlestick Chart</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <h2>Live Candlestick Chart</h2>
+
+    <!-- Form to input Ticker Symbol -->
+    <form onsubmit="changeTicker(event)">
+        <input type="text" id="tickerInput" placeholder="Enter Ticker Symbol" required>
+        <button type="submit">Load Chart</button>
+    </form>
+
+    <h3 id="tickerName"></h3>
+    <div id="chart"></div>
+
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+        var chartData = {
+            x: [],
+            open: [],
+            high: [],
+            low: [],
+            close: [],
+            type: 'candlestick',
+            name: 'Stock Price'
+        };
+
+        var layout = {
+            title: 'Live Candlestick Chart',
+            xaxis: { type: 'category', title: 'Time' },
+            yaxis: { title: 'Stock Price' }
+        };
+
+        function changeTicker(event) {
+            event.preventDefault();
+            var ticker = document.getElementById('tickerInput').value.toUpperCase();
+            document.getElementById('tickerName').innerText = "Current Ticker: " + ticker;
+            socket.emit("change_ticker", { ticker: ticker });
+        }
+
+        socket.on('update_chart', function(data) {
+            console.log("Received update:", data);
+
+            chartData.x = data.time;
+            chartData.open = data.open;
+            chartData.high = data.high;
+            chartData.low = data.low;
+            chartData.close = data.close;
+
+            Plotly.newPlot('chart', [chartData], layout);
+        });
+    </script>
+	<a href="/" class = "contact-button">Go Back</a>
+</body>
+</html>

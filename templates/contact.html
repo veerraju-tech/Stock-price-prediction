@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Contact us Page</title>
+	<style>
+		body {
+			background-image: <img src="{{ url_for('static', filename='stock-4.jpeg') }}" alt="Stock Image" height = "250px">;
+		}
+</style>
+</head>
+
+<body>
+    <!-- Header section -->
+    <header>
+        <nav class="navbar">
+            <a href="{{ url_for('index') }}"> Home </a>
+            <a href="{{ url_for('services') }}">Services</a>
+            <a href="{{ url_for('predict') }}">Predict</a>
+			<a href="{{ url_for('livestock') }}">Live Stock</a>
+            <a href="{{ url_for('about') }}">About Us</a>
+			<a href="{{ url_for('article') }}">Articles</a>
+            <a href="{{ url_for('contact') }}" class = "contact-button">Contact</a>
+        </nav>
+    </header>
+
+    <!-- banner section  -->
+    <section class="banner" style="text-align:center;"><br>
+        <img src= "https://media.geeksforgeeks.org/wp-content/uploads/20230822131732/images.png"
+            alt="Welcome to our Contact Us page">
+			<br>
+        <h1>Get in Touch With Us</h1>
+        <p>
+          We're here to answer any questions you may have.
+          </p><br><br>
+    </section>
+	<section style="text-align:center;">
+		<a href= "mailto: veerraju18040@gmail.com" class="contact-button" > Click to Send Mail</a>
+	</section>
+	
+    <!-- Footer section -->
+    <footer><br><br>
+        <p style="text-align:center;">
+          &copy; 2025 AEC. All rights reserved.
+          </p>
+    </footer>
+</body>
+
+</html>
