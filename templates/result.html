@@ -1,20 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Prediction Results</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Stock Prediction Results</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container-box {
+            width: 95%;
+            height: 95vh;
+            background: #e8f5e9;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        h1 {
+            text-align: center;
+            font-size: 40px;
+            font-weight: bold;
+            color: #4caf50;
+        }
+        .content-wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 20px;
+        }
+        .col-left, .col-right {
+            padding: 20px;
+        }
+        .col-left {
+            flex: 1;
+            min-width: 300px;
+        }
+        .col-right {
+            flex: 2;
+            min-width: 400px;
+            text-align: center;
+        }
+        .price-heading {
+            font-size: 18px;
+            font-weight: 600;
+            color: #4caf50;
+        }
+        .price-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+        .metric-list li {
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+        .btn-custom {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #4caf50;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .btn-custom:hover {
+            background-color: #388e3c;
+        }
+        img {
+            width: 100%;
+            max-height: 400px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Results for {{ ticker_symbol }}</h1>
-    <h2>Graphical Stock View</h2>
-    <img src="data:image/png;base64,{{ graph_url }}" alt="Stock Prediction Graph">
-    <h2>Next Day's Predicted Price</h2>
-    <p>${{ next_day_price }}</p>
-    <h2>Accuracy Metrics</h2>
-    <ul>
-        <li>Mean Squared Error (MSE): {{ mse }}</li>
-        <li>Mean Absolute Error (MAE): {{ mae }}</li>
-        <li>Root Mean Squared Error (RMSE): {{ rmse }}</li>
-    </ul>
-    <a href="/" class = "contact-button">Go Back</a>
+
+    <div class="container-box">
+       <marquee behavior="scroll" direction="right" scrollamount="5">
+            <h1>Stock Prediction Results for <span class="text-success">{{ ticker_symbol }}</span></h1>
+        </marquee>
+
+        <div class="content-wrapper">
+            <div class="col-left">
+                <h2 class="price-heading">Next Day's Predicted Price</h2>    
+                <p class="price-value">${{ next_day_price | round(2) }}</p>
+
+                <hr>
+
+                <h2 class="text-success">Accuracy Metrics</h2>
+                <ul class="metric-list list-group">
+                    <li class="list-group-item">📉 MSE: <strong>{{ mse | round(4) }}</strong></li>
+                    <li class="list-group-item">📊 MAE: <strong>{{ mae | round(4) }}</strong></li>
+                    <li class="list-group-item">📈 RMSE: <strong>{{ rmse | round(4) }}</strong></li>
+                </ul>
+            </div>
+
+            <div class="col-right">
+                <h2 class="text-success">Graphical Stock View</h2>
+                <img src="data:image/png;base64,{{ graph_url }}" alt="Stock Prediction Graph">
+            </div>
+        </div>
+
+        <a href="{{ url_for('predict') }}" class="btn btn-custom">🔄 Make Another Prediction</a>
+    </div>
+
 </body>
 </html>
