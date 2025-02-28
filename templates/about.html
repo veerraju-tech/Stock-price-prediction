@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 50px;
+        }
+
+        .grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px;
+        }
+
+        .card {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 50%;
+            width: 180px;
+            height: 180px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        /* Image inside the circle */
+        .circle-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Initially hide the text */
+        .card p {
+            position: absolute;
+            color: black;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Display text when hovering over the card */
+        .card:hover p {
+            opacity: 1;
+        }
+
+        /* Hide image when hovering over the card */
+        .card:hover .circle-image {
+            opacity: 0;
+        }
+
+        /* Subtle hover effect for the card */
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 15px 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            color: #333;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .navbar a:hover {
+            color: #4caf50;
+        }
+
+        .contact-button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .contact-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="{{ url_for('index') }}"> Home </a>
+            <a href="{{ url_for('services') }}">Services</a>
+            <a href="{{ url_for('predict') }}">Predict</a>
+			<a href="{{ url_for('livestock') }}">Live Stock</a>
+            <a href="{{ url_for('about') }}">About Us</a>
+			<a href="{{ url_for('article') }}">Articles</a>
+            <a href="{{ url_for('contact') }}" class = "contact-button">Contact</a>
+        </nav>
+    </header>
+
+    <h2>We, A team of 4!</h2>
+
+    <div class="grid-container">
+        <div class="card">
+            <img src="{{ url_for('static', filename='E3.jpeg') }}" class="circle-image" alt="Harika">
+            <p>K.Harika <br> 21A91A05E3</p> <br>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='E1.jpeg') }}" class="circle-image" alt="Pravalika">
+            <p>J.S.L.Pravalika <br> 21A91A05E1</p>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='A6.jpeg') }}" class="circle-image" alt="Yuvraj">
+            <p>Yuvraj Karna <br> 21A91A05A6</p>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='A5.jpeg') }}" class="circle-image" alt="Veerraju">
+            <p>Y.K.S Veerraju Chowdary <br> 21A91A05A5</p>
+        </div>
+    </div>
+	<section>
+		<img src="{{ url_for('static', filename='logo.jpg') }}"alt="College Logo" height="300px">
+	</section>
+	
+</body>
+       
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            margin: auto;
+            background: none;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        p {
+            color: #555;
+            line-height: 1.6;
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>About Us</h1>
+        <p>Welcome to <strong>Stockvision</strong>, an advanced stock price prediction platform designed to empower traders, investors, and financial analysts with cutting-edge insights...</p>
+        
+        <h2>Our Mission</h2>
+        <p>In today’s fast-paced financial markets, making informed investment decisions is crucial. 
+        Our mission is to provide accurate and data-driven stock price predictions to help investors maximize returns and minimize risks. 
+        We aim to democratize financial intelligence by making advanced stock forecasting tools accessible to everyone. 
+        By leveraging the power of artificial intelligence and big data analytics, we continuously refine our models to ensure the highest levels of accuracy and reliability.</p>
+        
+        <h2>Our Story</h2>
+        <p>Founded in <strong>2025</strong>, <strong>Stockvision</strong> was born from a passion for financial markets and cutting-edge technology. 
+        Our team of four engineers collaborated to develop an intelligent stock price prediction system that bridges the gap between technology and investing. 
+        Over the years, we have refined our methodologies and expanded our capabilities to meet the evolving needs of investors worldwide.</p>
+        
+        <h2>Why Choose Us?</h2>
+        <p>Our platform stands out due to our advanced AI models, which continuously adapt and improve with real-time market data. 
+        We pride ourselves on delivering high accuracy rates through extensive backtesting and financial modeling. 
+        Whether you're a professional investor or a beginner, our user-friendly interface ensures seamless access to market insights. 
+        With comprehensive data analysis covering both short-term and long-term strategies, we provide the tools you need to make informed investment decisions. 
+        Transparency and security are at the core of our services, ensuring ethical and reliable predictions for our users.</p>
+        
+        <h2>Join Us on This Journey</h2>
+        <p>As financial markets continue to evolve, so do we. Start your journey with us today and make smarter, data-driven investment decisions!</p>
+    </div>
+</body
+</html>
