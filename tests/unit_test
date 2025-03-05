@@ -1,0 +1,18 @@
+import pytest
+import numpy as np
+from stockprediction import create_sequences
+
+def test_create_sequences():
+    """Ensure sequence generation works correctly."""
+    sample_data = np.array([[i] for i in range(100)])  # Simulated price data
+    X, y = create_sequences(sample_data, sequence_length=10)
+
+    # Check if the output shapes match expectations
+    assert X.shape == (90, 10, 1)  # 100 - 10 = 90 sequences
+    assert y.shape == (90, 1)  # 90 targets
+
+def test_create_sequences_empty():
+    """Check handling of empty data."""
+    sample_data = np.array([])
+    with pytest.raises(IndexError):
+        create_sequences(sample_data, sequence_length=10)

@@ -1,0 +1,14 @@
+import time
+from stockprediction import main_function
+
+def test_stock_prediction_performance(monkeypatch):
+    """Test if stock prediction runs within a reasonable time."""
+    monkeypatch.setattr('builtins.input', lambda _: 'AAPL')  # Mock input
+
+    start_time = time.time()
+    result = main_function()
+    end_time = time.time()
+
+    execution_time = end_time - start_time
+    assert execution_time < 30  # Ensure prediction runs in less than 30 seconds
+    assert result["next_day_predicted_price"] > 0  # Ensure valid prediction
