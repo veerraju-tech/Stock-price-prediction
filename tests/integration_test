@@ -1,0 +1,17 @@
+import pytest
+from stockprediction import main_function
+
+@pytest.fixture
+def mock_input(monkeypatch):
+    """Mock the user input for the stock ticker symbol."""
+    monkeypatch.setattr('builtins.input', lambda _: 'AAPL')  # Replace input with 'AAPL'
+
+def test_stock_prediction_execution(mock_input):
+    """Test if the stock price prediction runs successfully."""
+    result = main_function()
+    
+    assert isinstance(result, dict)  # Ensure it returns a dictionary
+    assert "ticker" in result  # Check if ticker key exists
+    assert "next_day_predicted_price" in result  # Check if prediction exists
+    assert result["ticker"] == "AAPL"  # Ensure correct ticker is used
+    assert result["next_day_predicted_price"] > 0  # Prediction should be a positive value
