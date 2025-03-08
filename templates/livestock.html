@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Stock Chart</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<body style = "text-align:center;">
+ <header >
+      <nav class="navbar">
+            <a href="{{ url_for('index') }}"> Home </a>
+            <a href="{{ url_for('services') }}">Services</a>
+            <a href="{{ url_for('predict') }}">Predict</a>
+			<a href="{{ url_for('livestock') }}">Live Stock</a>
+            <a href="{{ url_for('about') }}">About Us</a>
+			<a href="{{ url_for('article') }}">Articles</a>
+            <a href="{{ url_for('contact') }}" class = "contact-button">Contact</a>
+        </nav>
+    </header>
+    <h2>Live Stock Chart</h2><br>
+
+    <form id="tickerForm">
+        <input type="text" id="tickerInput" placeholder="Enter Ticker Symbol" required>
+        <button type="submit">Load Chart</button></p><br>
+    </form>
+
+    <h3 id="tickerName"></h3>
+    <br>
+    <div id="liveChart"></div>
+
+    <script>
+        const socket = io(); // Connect to the SocketIO server
+
+        socket.on("connect", () => {
+            console.log("Socket connected!");
+        });
+
+        socket.on("update_chart", (data) => {
+            console.log("Received data:", data); // Check if data is received
+
+            if (data.time && data.open && data.high && data.low && data.close) {
+                const trace = {
+                    x: data.time,
+                    open: data.open,
+                    high: data.high,
+                    low: data.low,
+                    close: data.close,
+                    type: 'candlestick',
+                    xaxis: 'x',
+                    yaxis: 'y'
+                };
+
+                const layout = {
+                    title: `Live Candlestick Chart - ${data.ticker}`,
+                    xaxis: {
+                        title: 'Time',
+                        rangeslider: { visible: false }
+                    },
+                    yaxis: { title: 'Price' }
+                };
+
+                Plotly.newPlot('liveChart', [trace], layout);
+
+                if (data.predicted_price !== null) {
+                    document.getElementById("predictedPrice").textContent = "Predicted Price: " + data.predicted_price.toFixed(2);
+                } else {
+                    document.getElementById("predictedPrice").textContent = "Predicted Price: N/A";
+                }
+            } else {
+                console.error("Invalid data received:", data);
+            }
+        });
+
+        document.getElementById("tickerForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const ticker = document.getElementById("tickerInput").value.toUpperCase();
+            document.getElementById('tickerName').innerText = "Current Ticker: " + ticker;
+            socket.emit("change_ticker", { ticker: ticker });
+        });
+    </script>
+   
+</body>
+</html>
