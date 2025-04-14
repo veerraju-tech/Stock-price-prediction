@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+	
+        h1 {
+            margin-top: 50px;
+        }
+
+        .grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px;
+        }
+
+        .card {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 50%;
+            width: 210px;
+            height: 210px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        /* Image inside the circle */
+        .circle-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Initially hide the text */
+        .card p {
+			position: absolute;
+            color: black;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Display text when hovering over the card */
+        .card:hover p {
+            opacity: 1;
+        }
+
+        /* Hide image when hovering over the card */
+        .card:hover .circle-image {
+            opacity: 0;
+        }
+
+        /* Subtle hover effect for the card */
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 15px 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            color: #333;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .navbar a:hover {
+            color: #4caf50;
+        }
+
+        .contact-button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .contact-button:hover {
+            background-color: #45a049;
+        }
+		
+		#chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            max-height: 400px;
+            overflow: hidden;
+        }
+
+        #chat-box {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            padding: 10px;
+            max-height: 300px;
+            background-color: #f1f1f1;
+            border-radius: 8px;
+            box-sizing: border-box;
+            word-wrap: break-word; /* Ensures words break to avoid overflow */
+        }
+
+        .user-msg,
+        .bot-msg {
+            padding: 8px 12px;
+            margin: 8px 0;
+            border-radius: 15px;
+            max-width: 80%;
+            word-wrap: break-word; /* Ensures words break within the box */
+            overflow-wrap: break-word; /* This is an alternative to handle overflow */
+        }
+
+        .user-msg {
+            background-color: #cce5ff;
+            align-self: flex-end;
+            text-align: right;
+        }
+
+        .bot-msg {
+            background-color: #e0e0e0;
+            align-self: flex-start;
+            text-align: left;
+        }
+
+        #user-input {
+            width: calc(100% - 80px);
+            padding: 10px;
+            margin-right: 10px;
+            border: 2px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px;
+            border-radius: 50%;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Scrollbar styles */
+        #chat-box::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #chat-box::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 4px;
+        }
+
+        #chat-box::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
+    </style>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+	<header >
+      <nav class="navbar">
+            <a href="{{ url_for('index') }}"> Home </a>
+            <a href="{{ url_for('services') }}">Services</a>
+            <a href="{{ url_for('predict') }}">Predict</a>
+			<a href="{{ url_for('livestock') }}">Live Stock</a>
+            <a href="{{ url_for('about') }}">About Us</a>
+			<a href="{{ url_for('article') }}">Articles</a>
+            <a href="{{ url_for('contact') }}" class = "contact-button">Contact</a>
+        </nav>
+    </header>
+	<h1>Our Services</h1>
+	<p>Explore the powerful tools we provide to help you make informed investment decisions.</p>
+
+	<div class="grid-container">
+		<div class="card">
+			<img class="circle-image" src="{{ url_for('static', filename='stock-9.jpg') }}" alt="Stock Forecasting">
+			<p>
+			  <span style="color: red;">Stock Price Forecasting</span><br>
+			  Get real-time and future predictions powered by advanced machine learning models.
+			</p>
+		</div>
+		<div class="card">
+			<img class="circle-image" src="{{ url_for('static', filename='stock-10.jpg') }}" alt="Trend Analysis">
+			<p>
+			  <span style="color: red;">Trend Analysis</span><br>
+			  Visualize historical trends, moving averages, and technical indicators like RSI and MACD.
+			</p>
+		</div>
+		<div class="card">
+			<img class="circle-image" src="{{ url_for('static', filename='stock-11.jpg') }}" alt="Portfolio Simulation">
+			<p>
+			  <span style="color: red;">Portfolio Simulation</span><br>
+			  Simulate portfolio performance and predict returns with customizable setups.
+			</p>
+		</div>
+		<div class="card">
+			<img class="circle-image" src="{{ url_for('static', filename='stock-12.jpg') }}" alt="Real-time Alerts">
+			<p>
+			  <span style="color: red;">Real-time Alerts</span><br>
+			  Get notified when price targets or technical signals are hit. Stay ahead of the market.
+			</p>
+		</div>
+		
+	</div>
+	<div class='grid-container'>
+		<div class="card">
+			<img class="circle-image" src="{{ url_for('static', filename='stock-13.jpg') }}" alt="Model Transparency">
+			<p>
+			  <span style="color: red;">Model Transparency</span><br>
+			  Understand the logic behind our predictions with feature importance insights.
+			</p>
+		</div>
+		<div class="card">
+			<img class="circle-image" src="{{ url_for('static', filename='stock-14.jpg') }}" alt="Reports">
+			<p>
+			  <span style="color: red;">Latest News</span><br>
+			  Visualizing ready-made reports summarizing forecasts, trends, and recommendations.
+			</p>
+		</div>
+		<div class="card">
+			<img class="circle-image" src="{{ url_for('static', filename='stock-15.jpg') }}" alt="AI Assistant">
+			<p>
+			  <span style="color: red;">AI Chat Assistant</span><br>
+			  Ask stock-related queries and get instant responses powered by a smart chatbot
+			</p>
+		</div>
+		<div class="card">
+			<img class="circle-image" src="{{ url_for('static', filename='stock-16.jpg') }}" alt="Market Coverage">
+			<p>
+			  <span style="color: red;">Market Coverage</span><br>
+			  Track stocks across major exchanges like NSE, NYSE, and NASDAQ with ease.
+			</p>
+		</div>
+	</div>
+	<div id="chat-widget">
+        <h3>Ask StockBot 🤖</h3>
+        <div id="chat-box"></div>
+        <div style="display: flex; align-items: center;">
+            <input type="text" id="user-input" placeholder="Ask about a stock...">
+            <button onclick="sendMessage()">💬</button>
+        </div>
+    </div>
+
+	<script>
+        function sendMessage() {
+            const userInput = document.getElementById("user-input").value;
+            if (!userInput) return;
+
+            const chatBox = document.getElementById("chat-box");
+            chatBox.innerHTML += `<div class='user-msg'><strong>You:</strong> ${userInput}</div>`;
+
+            fetch("/chat", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({ message: userInput })
+            })
+            .then(res => res.json())
+            .then(data => {
+                chatBox.innerHTML += `<div class='bot-msg'><strong>Stock Bot:</strong> ${data.reply}</div>`;
+                document.getElementById("user-input").value = "";
+                chatBox.scrollTop = chatBox.scrollHeight;
+            });
+        }
+		window.onload = function() {
+        const chatBox = document.getElementById("chat-box");
+        chatBox.innerHTML = `<div class='bot-msg'><strong>Stock Bot:</strong> ⚠️ Please enter your query in the following format:<br>
+        <b>'ticker symbol' analysis for 'start date' and 'end date'</b><br><br>
+        Examples:<br>
+        - <b>'AAPL analysis for 2023-01-01 and 2023-12-31'</b></div>`;
+    };
+    </script>
+</body>
+</html>
